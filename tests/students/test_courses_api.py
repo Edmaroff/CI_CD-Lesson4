@@ -4,7 +4,8 @@ from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, \
     HTTP_204_NO_CONTENT, HTTP_400_BAD_REQUEST
 from rest_framework.test import APIClient
 from model_bakery import baker
-from students.models import Student, Course
+# from students.models import Student, Course
+from students.models import Course
 from django.conf import settings
 
 
