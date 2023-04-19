@@ -44,8 +44,8 @@ jobs:
       - name: Установка зависимостей
         run: pip install -r requirements.txt
 
-#      - name: Линтинг
-#        run: flake8
+      - name: Линтинг
+        run: flake8
 
       - name: Тесты
         run: pytest .
@@ -57,13 +57,13 @@ jobs:
           DB_NAME: ${{ env.DB_NAME }}
           DB_USER: ${{ env.DB_USER }}
           DB_PASSWORD: ${{ env.DB_PASSWORD }}
-          DB_HOST: '0.0.0.0'
+          DB_HOST: ${{ secrets.TEST_HOST_DB }}
           DB_PORT: ${{ env.DB_PORT }}
 
-      - name: Деплой
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST_NAME }}
-          username: ${{ secrets.HOST_USER}}
-          password: ${{ secrets.HOST_PASSWORD }}
-          script: expect /home/edmar/CI_CD-Lesson4/deploy.exp
+#      - name: Деплой
+#        uses: appleboy/ssh-action@master
+#        with:
+#          host: ${{ secrets.HOST_NAME }}
+#          username: ${{ secrets.HOST_USER}}
+#          password: ${{ secrets.HOST_PASSWORD }}
+#          script: expect /home/edmar/CI_CD-Lesson4/deploy.exp
