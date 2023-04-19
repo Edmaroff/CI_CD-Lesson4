@@ -4,8 +4,7 @@ from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, \
     HTTP_204_NO_CONTENT, HTTP_400_BAD_REQUEST
 from rest_framework.test import APIClient
 from model_bakery import baker
-# from students.models import Student, Course
-from students.models import Course
+from students.models import Student, Course
 from django.conf import settings
 
 
@@ -53,93 +52,93 @@ def test_course_retrieve(client, courses_student_factory):
     # Assert
     assert response.status_code == HTTP_200_OK
     assert data.get('name') == course.name
-#
-#
-# # Проверка получения списка курсов (list-логика)
-# @pytest.mark.django_db
-# def test_course_list(client, courses_student_factory):
-#     # Arrange
-#     course = courses_student_factory(_quantity=10)
-#     url = reverse('courses-list')
-#
-#     # Act
-#     response = client.get(url)
-#     data = response.json()
-#
-#     # Assert
-#     assert response.status_code == HTTP_200_OK
-#     assert len(data) == len(course)
-#
-#
-# # Проверка фильтрации списка курсов по id
-# @pytest.mark.django_db
-# def test_course_filter_id(client, courses_student_factory):
-#     # Arrange
-#     course = courses_student_factory(_quantity=10)
-#     course_id = course[3].pk
-#     url = reverse('courses-list')
-#
-#     # Act
-#     response = client.get(url, {'id': course_id})
-#     data = response.json()
-#
-#     # Assert
-#     assert response.status_code == HTTP_200_OK
-#     assert data[0].get('name') == course[3].name
-#     assert len(data) == 1
-#
-#
-# # Проверка фильтрации списка курсов по полю name
-# @pytest.mark.django_db
-# def test_course_filter_name(client, courses_student_factory):
-#     # Arrange
-#     course = courses_student_factory(_quantity=10)
-#     course_name = course[3].name
-#     url = f"{reverse('courses-list')}?name={course_name}"
-#
-#     # Act
-#     response = client.get(url)
-#     data = response.json()
-#
-#     # Assert
-#     assert response.status_code == HTTP_200_OK
-#     assert data[0].get('name') == course[3].name
-#     assert len(data) == 1
-#
-#
-# # Тест успешного создания курса
-# @pytest.mark.django_db
-# def test_course_create(client):
-#     # Arrange
-#     student = Student.objects.create(name='student1')
-#     url = reverse('courses-list')
-#     count = Course.objects.count()
-#
-#     # Act
-#     response = client.post(url, data={'name': 'course1',
-#                                       'students': student.pk})
-#     data = response.json()
-#
-#     # Assert
-#     assert response.status_code == HTTP_201_CREATED
-#     assert data.get('name') == 'course1'
-#     assert Course.objects.count() == count + 1
-#
-#
-# # Тест успешного обновления курса
-# @pytest.mark.django_db
-# def test_course_update(client, courses_student_factory):
-#     # Arrange
-#     course = courses_student_factory()
-#     url = reverse('courses-detail', args=(course.pk,))
-#
-#     # Act
-#     response = client.patch(url, data={'name': 'test_name'})
-#     data = response.json()
-#
-#     # Assert
-#     assert response.status_code == HTTP_200_OK
-#     assert data.get('name') == 'test_name'
+
+
+# Проверка получения списка курсов (list-логика)
+@pytest.mark.django_db
+def test_course_list(client, courses_student_factory):
+    # Arrange
+    course = courses_student_factory(_quantity=10)
+    url = reverse('courses-list')
+
+    # Act
+    response = client.get(url)
+    data = response.json()
+
+    # Assert
+    assert response.status_code == HTTP_200_OK
+    assert len(data) == len(course)
+
+
+# Проверка фильтрации списка курсов по id
+@pytest.mark.django_db
+def test_course_filter_id(client, courses_student_factory):
+    # Arrange
+    course = courses_student_factory(_quantity=10)
+    course_id = course[3].pk
+    url = reverse('courses-list')
+
+    # Act
+    response = client.get(url, {'id': course_id})
+    data = response.json()
+
+    # Assert
+    assert response.status_code == HTTP_200_OK
+    assert data[0].get('name') == course[3].name
+    assert len(data) == 1
+
+
+# Проверка фильтрации списка курсов по полю name
+@pytest.mark.django_db
+def test_course_filter_name(client, courses_student_factory):
+    # Arrange
+    course = courses_student_factory(_quantity=10)
+    course_name = course[3].name
+    url = f"{reverse('courses-list')}?name={course_name}"
+
+    # Act
+    response = client.get(url)
+    data = response.json()
+
+    # Assert
+    assert response.status_code == HTTP_200_OK
+    assert data[0].get('name') == course[3].name
+    assert len(data) == 1
+
+
+# Тест успешного создания курса
+@pytest.mark.django_db
+def test_course_create(client):
+    # Arrange
+    student = Student.objects.create(name='student1')
+    url = reverse('courses-list')
+    count = Course.objects.count()
+
+    # Act
+    response = client.post(url, data={'name': 'course1',
+                                      'students': student.pk})
+    data = response.json()
+
+    # Assert
+    assert response.status_code == HTTP_201_CREATED
+    assert data.get('name') == 'course1'
+    assert Course.objects.count() == count + 1
+
+
+# Тест успешного обновления курса
+@pytest.mark.django_db
+def test_course_update(client, courses_student_factory):
+    # Arrange
+    course = courses_student_factory()
+    url = reverse('courses-detail', args=(course.pk,))
+
+    # Act
+    response = client.patch(url, data={'name': 'test_name'})
+    data = response.json()
+
+    # Assert
+    assert response.status_code == HTTP_200_OK
+    assert data.get('name') == 'test_name'
 
 
 # Тест успешного удаления курса.
