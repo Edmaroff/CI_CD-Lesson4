@@ -20,7 +20,7 @@ from rest_framework.routers import DefaultRouter
 from students.views import CoursesViewSet
 
 router = DefaultRouter()
-router.register("coursess11", CoursesViewSet, basename="courses")
+router.register("coursess", CoursesViewSet, basename="courses")
 
 
 urlpatterns = [
