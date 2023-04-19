@@ -60,10 +60,10 @@ jobs:
           DB_HOST: ${{ secrets.TEST_HOST_DB }}
           DB_PORT: ${{ env.DB_PORT }}
 
-#      - name: Деплой
-#        uses: appleboy/ssh-action@master
-#        with:
-#          host: ${{ secrets.HOST_NAME }}
-#          username: ${{ secrets.HOST_USER}}
-#          password: ${{ secrets.HOST_PASSWORD }}
-#          script: expect /home/edmar/CI_CD-Lesson4/deploy.exp
+      - name: Деплой
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_NAME }}
+          username: ${{ secrets.HOST_USER}}
+          password: ${{ secrets.HOST_PASSWORD }}
+          script: expect /home/edmar/CI_CD-Lesson4/deploy.exp
