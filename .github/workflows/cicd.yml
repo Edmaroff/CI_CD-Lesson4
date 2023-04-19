@@ -54,10 +54,10 @@ jobs:
           DEBUG: ${{ env.DEBUG }}
           ALLOWED_HOSTS: ${{ env.ALLOWED_HOSTS }}
           DB_ENGINE: ${{ env.DB_ENGINE }}
-          DB_NAME: 'django_testing'
+          DB_NAME: ${{ env.DB_NAME }}
           DB_USER: ${{ env.DB_USER }}
           DB_PASSWORD: ${{ env.DB_PASSWORD }}
-          DB_HOST: ${{ env.DB_HOST }}
+          DB_HOST: ['0.0.0.0']
           DB_PORT: ${{ env.DB_PORT }}
 
       - name: Деплой
