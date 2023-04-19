@@ -48,7 +48,7 @@ jobs:
 #        run: flake8
 
       - name: Тесты
-        run: pytest
+        run: pytest .
 #        env:
 #          SECRET_KEY: ${{ env.SECRET_KEY }}
 #          DEBUG: ${{ env.DEBUG }}
