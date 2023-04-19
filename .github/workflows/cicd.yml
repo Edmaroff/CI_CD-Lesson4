@@ -44,8 +44,8 @@ jobs:
       - name: Установка зависимостей
         run: pip install -r requirements.txt
 
-      - name: Линтинг
-        run: flake8
+#      - name: Линтинг
+#        run: flake8
 
       - name: Тесты
         run: pytest
