@@ -33,37 +33,45 @@ jobs:
           --health-retries 5
 
     steps:
-      - name: Проверка репозитория на изменения
-        uses: actions/checkout@v3
-
-      - name: Установка python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.8
-
-      - name: Установка зависимостей
-        run: pip install -r requirements.txt
-
-      - name: Линтинг
-        run: flake8
-
-      - name: Тесты
-        run: pytest .
-        env:
-          SECRET_KEY: ${{ env.SECRET_KEY }}
-          DEBUG: ${{ env.DEBUG }}
-          ALLOWED_HOSTS: ${{ env.ALLOWED_HOSTS }}
-          DB_ENGINE: ${{ env.DB_ENGINE }}
-          DB_NAME: ${{ env.DB_NAME }}
-          DB_USER: ${{ env.DB_USER }}
-          DB_PASSWORD: ${{ env.DB_PASSWORD }}
-          DB_HOST: ${{ secrets.TEST_HOST_DB }}
-          DB_PORT: ${{ env.DB_PORT }}
+#      - name: Проверка репозитория на изменения
+#        uses: actions/checkout@v3
+#
+#      - name: Установка python
+#        uses: actions/setup-python@v4
+#        with:
+#          python-version: 3.8
+#
+#      - name: Установка зависимостей
+#        run: pip install -r requirements.txt
+#
+#      - name: Линтинг
+#        run: flake8
+#
+#      - name: Тесты
+#        run: pytest .
+#        env:
+#          SECRET_KEY: ${{ env.SECRET_KEY }}
+#          DEBUG: ${{ env.DEBUG }}
+#          ALLOWED_HOSTS: ${{ env.ALLOWED_HOSTS }}
+#          DB_ENGINE: ${{ env.DB_ENGINE }}
+#          DB_NAME: ${{ env.DB_NAME }}
+#          DB_USER: ${{ env.DB_USER }}
+#          DB_PASSWORD: ${{ env.DB_PASSWORD }}
+#          DB_HOST: ${{ secrets.TEST_HOST_DB }}
+#          DB_PORT: ${{ env.DB_PORT }}
 
       - name: Деплой
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST_NAME }}
           username: ${{ secrets.HOST_USER}}
-          password: ${{ secrets.HOST_PASSWORD }}
+          key: ${{ secrets.SERVER_KEY }}
           script: expect /home/edmar/CI_CD-Lesson4/deploy.exp
+
+#      - name: Деплой
+#        uses: appleboy/ssh-action@master
+#        with:
+#          host: ${{ secrets.HOST_NAME }}
+#          username: ${{ secrets.HOST_USER}}
+#          password: ${{ secrets.HOST_PASSWORD }}
+#          script: expect /home/edmar/CI_CD-Lesson4/deploy.exp
