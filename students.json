@@ -1,0 +1,57 @@
+[
+  {
+    "model": "students.student",
+    "pk": 1,
+    "fields": {
+      "name": "Александр",
+      "birth_date": "1996-04-21"
+    }
+  },
+  {
+    "model": "students.student",
+    "pk": 2,
+    "fields": {
+      "name": "Алексей",
+      "birth_date": "1996-04-22"
+    }
+  },
+  {
+    "model": "students.student",
+    "pk": 3,
+    "fields": {
+      "name": "Иван",
+      "birth_date": "1996-04-23"
+    }
+  },
+  {
+    "model": "students.course",
+    "pk": 1,
+    "fields": {
+      "name": "Основы терминала",
+      "students": [1, 2]
+    }
+  },
+  {
+    "model": "students.course",
+    "pk": 2,
+    "fields": {
+      "name": "Практика с сервером",
+      "students": [2, 3]
+    }
+  },
+  {
+    "model": "students.course",
+    "pk": 3,
+    "fields": {
+      "name": "Развертывание проекта",
+      "students": [1, 2, 3]
+    }
+  },
+  {
+    "model": "students.course",
+    "pk": 4,
+    "fields": {"name": "CI/CD"}
+  }
+]
+
+
